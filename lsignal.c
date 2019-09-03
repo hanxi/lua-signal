@@ -344,7 +344,9 @@ int luaopen_signal(lua_State *L)
   int i = 0;
 
   /* add the library */
-  luaL_register(L, "signal", lsignal_lib);
+  lua_newtable(L);
+  luaL_setfuncs(L, lsignal_lib, 0);
+  lua_pushvalue(L, -1);
 
   /* push lua_signals table into the registry */
   /* put the signals inside the library table too,
